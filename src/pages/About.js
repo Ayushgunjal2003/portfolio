@@ -2,7 +2,9 @@ import React from 'react'
 
 function About() {
   return (
-    <div className='text-white'>About</div>
+    <div className='text-white'>
+    hello there have done version control
+    </div>
   )
 }
 
