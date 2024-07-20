@@ -1,11 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Login from '../pages/Login';
-import Signup from '../pages/Signup';
+
 
 function Navbar(props) {
     let IsLoggedIn = props.IsLoggedIn;
-    let setIsLoggedIn = props.setIsLoggedIn;
+    
     return (
         <div className='flex flex-row justify-evenly items-center'>
 

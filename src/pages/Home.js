@@ -1,12 +1,20 @@
-import React from 'react'
-import Image from "../assets/profile-pic__6_-removebg-preview.png"
+import React, { useEffect, useState } from 'react';
+import Image from "../assets/profile-pic__6_-removebg-preview.png";
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa6";
 import { LiaHackerrank } from "react-icons/lia";
 import { FaYoutube } from "react-icons/fa";
-import "./styles.css"
+import "./styles.css";
 
 function Home() {
+  const [hasRotated, setHasRotated] = useState(false);
+
+  useEffect(() => {
+    // Start rotation animation and then trigger bouncing
+    setTimeout(() => {
+      setHasRotated(true);
+    }, 1000); // Delay to make sure the rotation animation is applied first
+  }, []);
 
   const handleDownload = () => {
     // Trigger the download of the PDF
@@ -52,7 +60,11 @@ function Home() {
         </div>
       </div>
       <div className='w-1/2 pl-4 flex items-center justify-center'>
-        <img src={Image} alt='profile' className='rounded-full w-full max-w-xs md:max-w-sm lg:max-w-md' />
+        <img
+          src={Image}
+          alt='profile'
+          className={`rounded-full w-full max-w-xs md:max-w-sm lg:max-w-md ${hasRotated ? 'bounce' : 'rotate-once'}`}
+        />
       </div>
     </div>
   )

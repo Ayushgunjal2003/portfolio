@@ -14,4 +14,37 @@
   .slide-up {
     animation: slide-up 0.5s ease-out forwards;
   }
+
+
+
+  /* styles.css */
+
+/* Animation for rotating the image */
+@keyframes rotateZ {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+.rotate-once {
+  animation: rotateZ 1s linear;
+}
+
+/* Animation for bouncing the image */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.bounce {
+  animation: bounce 2s infinite;
+}
+
   
