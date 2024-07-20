@@ -9,9 +9,7 @@ import data from "./data";
 import Projectvideos from "./pages/Projectvideos";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Template from "./components/Template";
-import LoginForm from "./components/LoginForm";
-import SignupForm from "./components/SignupForm";
+
 
 
 const App = () => {
