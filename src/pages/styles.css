@@ -1,5 +1,3 @@
-/* styles.css */
-
 @keyframes slide-up {
     0% {
       transform: translateY(100px);
@@ -14,41 +12,37 @@
   .slide-up {
     animation: slide-up 0.5s ease-out forwards;
   }
-
-
-
+  
   /* styles.css */
-
-/* Animation for rotating the image */
-@keyframes rotateZ {
+  
+  /* styles.css */
+  
+  /* Animation for rotating the image */
+  @keyframes rotateZ {
   from {
     transform: rotateY(0deg);
   }
   to {
     transform: rotateY(360deg);
   }
-}
-
-.rotate-once {
+  }
+  
+  .rotate-once {
   animation: rotateZ 1s linear;
-}
-
-/* Animation for bouncing the image */
-@keyframes bounce {
+  }
+  
+  /* Animation for bouncing the image */
+  @keyframes bounce {
   0%, 100% {
     transform: translateY(0);
   }
   50% {
     transform: translateY(-20px);
   }
-}
-
-.bounce {
+  }
+  
+  .bounce {
   animation: bounce 2s infinite;
-}
-
-<<<<<<< HEAD
+  }
   
-=======
-  
->>>>>>> 71f699544a65037356491f768e6dea83d2c02810
+    

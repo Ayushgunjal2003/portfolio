@@ -4,7 +4,7 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa6";
 import { LiaHackerrank } from "react-icons/lia";
 import { FaYoutube } from "react-icons/fa";
-import "./styles.css";
+import "./styles.css"
 
 function Home() {
   const [hasRotated, setHasRotated] = useState(false);
