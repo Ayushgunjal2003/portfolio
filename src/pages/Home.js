@@ -1,32 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import Image from "../assets/profile-pic__6_-removebg-preview.png";
-import { FaLinkedin } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa6";
+import { FaLinkedin, FaGithub, FaYoutube } from "react-icons/fa";
 import { LiaHackerrank } from "react-icons/lia";
-import { FaYoutube } from "react-icons/fa";
 import "./styles.css"
 
 function Home() {
   const [hasRotated, setHasRotated] = useState(false);
 
   useEffect(() => {
-    // Start rotation animation and then trigger bouncing
     setTimeout(() => {
       setHasRotated(true);
-    }, 1000); // Delay to make sure the rotation animation is applied first
+    }, 1000); 
   }, []);
 
   const handleDownload = () => {
-    // Trigger the download of the PDF
     const link = document.createElement('a');
-    link.href = `${process.env.PUBLIC_URL}/resume.pdf`; // Path to your PDF file in the public folder
+    link.href = `${process.env.PUBLIC_URL}/resume.pdf`; 
     link.download = 'resume.pdf';
     link.click();
   };
 
   return (
-    <div className='text-white flex flex-row mt-28 mx-auto max-w-4xl p-4 slide-up'>
-      <div className='w-1/2 pr-4 flex flex-col gap-2'>
+    <div className='text-white flex flex-col md:flex-row mt-28 mx-auto max-w-4xl p-4 slide-up'>
+      <div className='w-full md:w-1/2 pr-4 flex flex-col gap-2'>
         <h1 className='text-2xl font-bold'>Hello, It's Me</h1>
         <h1 className='text-6xl font-bold'>Ayush Gunjal</h1>
         <div className='mt-4 flex flex-row gap-2'>
@@ -59,7 +55,7 @@ function Home() {
           </button>
         </div>
       </div>
-      <div className='w-1/2 pl-4 flex items-center justify-center'>
+      <div className='w-full md:w-1/2 pl-4 flex items-center justify-center'>
         <img
           src={Image}
           alt='profile'
