@@ -10,28 +10,23 @@ import Projectvideos from "./pages/Projectvideos";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 
-
-
 const App = () => {
-  const[IsLoggedIn,setIsLoggedIn]=useState(false);
+  const [IsLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
-    <div className="h-screen w-screen bg-black overflow-x-hidden overflow-y-hidden">
-      <Navbar className="h-24 w-full" IsLoggedIn={IsLoggedIn} setIsLoggedIn={setIsLoggedIn}></Navbar>
-
-
+    <div className="min-h-screen w-screen bg-black overflow-x-hidden overflow-y-auto">
+      <Navbar className="h-24 w-full" IsLoggedIn={IsLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      
       <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/about" element={<About/>} />
-        <Route path="/project" element={<Project data={data}/>} />
-        <Route path="/contact" element={<Contact/>} />
-        <Route path="/projectvideos" element={<Projectvideos/>} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="/signup" element={<Signup/>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/project" element={<Project data={data} />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/projectvideos" element={<Projectvideos />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </div>
-
-
   );
 };
 
