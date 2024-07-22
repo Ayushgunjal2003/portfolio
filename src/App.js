@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
@@ -9,23 +9,37 @@ import data from "./data";
 import Projectvideos from "./pages/Projectvideos";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Loader from "./components/Loader";
 
 const App = () => {
-  const [IsLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // Simulate a loading time for demonstration
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // Adjust the loading time as needed
+  }, []);
 
   return (
     <div className="min-h-screen w-screen bg-black overflow-x-hidden overflow-y-auto">
-      <Navbar className="h-24 w-full" IsLoggedIn={IsLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-      
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/project" element={<Project data={data} />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/projectvideos" element={<Projectvideos />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-      </Routes>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <Navbar className="h-24 w-full" isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/project" element={<Project data={data} />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/projectvideos" element={<Projectvideos />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+          </Routes>
+        </>
+      )}
     </div>
   );
 };
