@@ -1,48 +1,45 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-function Navbar(props) {
-    let IsLoggedIn = props.IsLoggedIn;
-    
-    return (
-        <div className='flex flex-col md:flex-row justify-evenly items-center'>
+function Navbar({ isLoggedIn, onLogout }) {
+  return (
+    <div className='flex flex-col md:flex-row justify-evenly items-center'>
+      <nav>
+        <ul className='flex flex-col md:flex-row gap-6'>
+          <li className='text-white text-lg mt-8'>
+            <Link to="/">Home</Link>
+          </li>
+          <li className='text-white text-lg mt-8'>
+            <Link to="/about">About</Link>
+          </li>
+          <li className='text-white text-lg mt-8'>
+            <Link to="/project">Project</Link>
+          </li>
+          <li className='text-white text-lg mt-8'>
+            <Link to="/contact">Contact</Link>
+          </li>
+        </ul>
+      </nav>
 
-            <nav >
-                <ul className='flex flex-col md:flex-row gap-6'>
-                    <li className='text-white text-lg mt-8'>
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li className='text-white text-lg mt-8'>
-                        <Link to="/about">About</Link>
-                    </li>
-                    <li className='text-white text-lg mt-8'>
-                        <Link to="/project">Project</Link>
-                    </li >
-                    <li className='text-white text-lg mt-8'>
-                        <Link to="/contact">Contact</Link>
-                    </li>
-                </ul>
-            </nav>
-
-            <div className='flex flex-col md:flex-row gap-6 mt-8'>
-                {   !IsLoggedIn &&
-                    <Link to='/login' className='text-white align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none'>
-                    <button>Login</button>
-                    </Link>
-                }
-                {   !IsLoggedIn &&
-                    <Link to='/signup'  className='text-white align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none'>
-                    <button>Sign in</button>
-                    </Link>
-                }
-                {   IsLoggedIn &&
-                    <Link className='text-white'>
-                    <button>Log out</button>
-                    </Link>
-                }
-            </div>
-        </div>
-    )
+      <div className='flex flex-col md:flex-row gap-6 mt-8'>
+        {!isLoggedIn && (
+          <>
+            <Link to='/login' className='text-white'>
+              <button className="bg-gray-900 px-6 py-2 rounded-lg">Login</button>
+            </Link>
+            <Link to='/signup' className='text-white'>
+              <button className="bg-gray-900 px-6 py-2 rounded-lg">Sign up</button>
+            </Link>
+          </>
+        )}
+        {isLoggedIn && (
+          <button onClick={onLogout} className="bg-gray-900 px-6 py-2 rounded-lg text-white">
+            Logout
+          </button>
+        )}
+      </div>
+    </div>
+  );
 }
 
-export default Navbar
+export default Navbar;

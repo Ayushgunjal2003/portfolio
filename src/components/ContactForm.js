@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 function ContactForm() {
     const [formData, setFormData] = useState({
@@ -8,19 +10,30 @@ function ContactForm() {
         message: ""
     });
 
-    function changeHandler(event) {
+    const changeHandler = (event) => {
         const { name, value } = event.target;
         setFormData((prevData) => ({
             ...prevData,
             [name]: value
         }));
-    }
+    };
 
-    function submitHandler(event) {
+    const submitHandler = async (event) => {
         event.preventDefault();
-        console.log("Form data:", formData);
-        // Add your form submission logic here
-    }
+        try {
+            // Make an API request to submit the contact form data
+            const response = await axios.post('https://contact-api-1on2.onrender.com/contacts/', formData);
+            toast.success("Message sent successfully!");
+            // alert("Message sent successfully!");
+            console.log("Response:", response.data);
+            // Reset form data after successful submission
+            setFormData({ name: "", email: "", subject: "", message: "" });
+        } catch (error) {
+            toast.error("Error sending message: " + error.message);
+            // alert("Error sending message: " + error.message);
+            console.error("Error:", error);
+        }
+    };
 
     return (
         <form onSubmit={submitHandler} className="flex flex-col gap-4">

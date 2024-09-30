@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 function SignupForm() {
   const [formData, setFormData] = useState({
@@ -9,6 +11,9 @@ function SignupForm() {
     ConfirmPassword: ""
   });
 
+  const [error, setError] = useState(""); // Error state for error messages
+  const [success, setSuccess] = useState(""); // Success message state
+
   function changeHandler(event) {
     const { name, value } = event.target;
     setFormData((prevData) => ({
@@ -17,14 +22,44 @@ function SignupForm() {
     }));
   }
 
-  function submitHandler(event) {
+  async function submitHandler(event) {
     event.preventDefault();
-    console.log("Form data:", formData);
-    // Add your form submission logic here
+
+    // Reset error and success states before making the request
+    setError("");
+    setSuccess("");
+
+    if (formData.password !== formData.ConfirmPassword) {
+      setError("Passwords do not match!");
+      return;
+    }
+
+    const userData = {
+      first_name: formData.Firstname,
+      last_name: formData.Lastname,
+      email: formData.email,
+      password: formData.password,
+    };
+
+    try {
+      // Make async API request to sign up the user
+      const response = await axios.post('https://signin-api-zwg0.onrender.com/users/', userData);
+      setSuccess("User successfully signed up!");
+      toast.success("User successfully signed up!")
+      console.log("User signed up:", response.data);
+    } catch (error) {
+      // Handle API error
+      setError("Error signing up user: " + (error.response?.data?.message || error.message));
+      toast.error("Error signing up user");
+      console.error("Error:", error);
+    }
   }
 
   return (
     <form onSubmit={submitHandler} className="flex flex-col gap-4">
+      {error && <div className="text-red-500 mb-4">{error}</div>}
+      {success && <div className="text-green-500 mb-4">{success}</div>}
+
       <div className="flex">
         <div className="w-1/2 pr-2">
           <label htmlFor='Firstname' className="block text-white mb-2">First Name</label>
